@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klasės mokinių ūgiai</title>
+</head>
+<body>
+    <h1>Klasės mokinių ūgiai</h1>
+	<?php
+		function did ($mas) {
+			sort($mas);
+			return $mas;
+		}
+		function maz($mas) {
+			rsort($mas);
+			return $mas;
+		}
+		$test = array(10, 50, 60, 10, 5, 8, 9, 1, 4, 3, 5);
+		echo '<pre>';
+		print_r (did($test));
+		print_r (maz($test));
+	?>
+	
+	<form method="post" action="index.php">
+<textarea rows="5" cols="30" name="UGIAI" placeholder="Iveskite mokiniu ugius cm, atskirdami kableliais"></textarea>
+<input type="submit" value="OK">
+
+	</form>
+	
+	<?php
+		if (isset($_POST["UGIAI"])) {
+			$eilute = $_POST["UGIAI"];
+			$UM = explode(',',$eilute); //isardo teksto eilute pagal pozymi i masyva
+		}
+		echo '<p>5C klases mokiniu ugiai didejanciai' . '<br>';
+		for ($i = 0; $i < count($UM) ; $i++) {
+			echo $UM[$i] . 'cm; ';
+		}
+		echo '</p>';
+		print_r($UM);
+		echo '<p>5C klases mokiniu ugiai mazejanciai' . '<br>';
+		$mazejanciai = maz($UM);
+		for ($i = 0; $i < count($UM) ; $i++) {
+			echo $mazejanciai[$i] . 'cm; ';
+		}
+		echo '</p>';
+		print_r($mazejanciai);
+		
+		echo '<p>';
+		//---4 dalis
+		echo '<p>Du didziausi: ' .  $mazejanciai[0] . ' ' . $mazejanciai[1] . '<p>';
+		echo '<p>Du maziausi: ' .  $mazejanciai[count($mazejanciai)-1] . ' ' . $mazejanciai[count($mazejanciai)-2] . '<p>';
+		
+		
+	?>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>4 pratybos</title>
+	</head>
+
+	<body>
+		<img src="https://i.imgur.com/9qlvg1k.png" height="300">
+
+		<h2>Valiutos konvertavimas</h2>
+		<hr>
+		<form method="post" action="index.php">
+			<input type="number" name="litai">Lt
+			<select name="valiuta">
+			  <option>Eurais</option>
+			  <option>Svarais</option>
+			  <option>Doleriais</option>
+			</select>
+			<button type="submit">skaiciuok</button>
+		</form>
+		<hr>
+	</body>
+
+	<?php
+		if (isset($_POST['litai']) && isset($_POST['valiuta'])) {
+			if ($_POST['valiuta'] == 'Eurais') {
+				echo $_POST['litai'] . ' litu yra ' . $_POST['litai'] / 3.4528 . ' euru.';
+			}
+			else if ($_POST['valiuta'] == 'Svarais') {
+				echo $_POST['litai'] . ' litu yra ' . $_POST['litai'] * 0.2463 . ' svaru.';
+			}
+			else if ($_POST['valiuta'] == 'Doleriais') {
+				echo $_POST['litai'] . ' litu yra ' . $_POST['litai'] * 0.3356 . ' doleriu.';
+			}
+			else if ($_POST['litai'] == "") echo 'tuscias laukelis';
+			else echo 'Irasykite suma';
+		}
+	?>  
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>2 pratybos</title>
+		<meta charset="utf-8">
+	</head>
+
+	<body>
+		<p>2. Sprendimus testuokite lokaliame serveryje.
+			Sprendime turi būti numatytas Valid HTML5 kodo generavimas.<br>
+			Užduotys:
+			2.1. Taikydami PHP funkciją date() suformuokite puslapyje dinaminį pranešimą;
+			Server date: DD.MM.YYYY, [day of the week]
+			Tomorrow date: DD.MM.YYYY,[day of the week]
+		</p>
+		<?php
+			echo date('d.m.Y, l') . '<br>';
+		?>
+		<hr>
+		<p>2.2. Puslapyje dinamiškai atvaizduojamas metų laiką atitinkantis paveikslėlis.</p>
+		<?php
+			$menesis = date('n');
+			echo $menesis . '<br>';
+			for ($i = 1; $i <= 12; $i++) {
+				if ($i > 2 && $i <= 5 && $i == $menesis) {
+					echo '<span style=color:ORANGE>PAVASARIS</span><br>';
+					echo '<img src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F210316134609-01-wisdom-project-spring.jpg" height="300px"';
+				}
+				else if ($i >= 5 && $i <= 8 && $i == $menesis) {
+					echo '<span style=color:GREEN>VASARA</span><br>';
+					echo '<img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/beautiful-tropical-sunset-scenery-two-sun-beds-royalty-free-image-1595368231.jpg" height="300px"';
+				}
+				else if ($i >= 9 && $i <= 11 && $i == $menesis) {
+					echo '<span style=color:red>RUDUO</span><br>';
+					echo '<img src="https://cdn.britannica.com/88/137188-050-8C779D64/Boston-Public-Garden.jpg" height="300px"';
+				}
+				else if (($i == 12 or $i == 1 or $i == 2) && $i == $menesis) {
+					echo '<span style=color:blue>ZIEMA</span><br>';
+					echo '<img src="https://www.secondwavemedia.com/metromode/images/Features/img_5351.jpg" height="300px"<br>';
+				}
+			}
+		?>
+		<hr>
+		<hr>
+		<p>2.3. Suformuokite kintamajame saugomo skaičiaus daugybos nuo 1 iki 10 lentelę,
+			žemiau to paties skaičiaus daugybos nuo 10 iki 1 lentelę,
+			dar žemiau – sekančių trijų skaičių daugybos nuo 1 iki 10 lenteles, pateikiant jas
+			horizontaliai vieną šalia kitos.
+		</p>
+		<?php
+			$sk = rand(1, 10);
+			echo 'Random skaiciaus ' . $sk . ' daugybos lentele nuo 1 iki 10</pre>';
+			for ($i = 1; $i <= 10; $i++) {
+				echo '<pre>' . $sk . ' * ' . $i . ' = ' . $i * $sk . '</pre>';
+			}
+			echo 'Random skaiciaus ' . $sk . ' daugybos lentele nuo 10 iki 1</pre>';
+			for ($i = 10; $i >= 1; $i--) {
+				echo '<pre>' . $sk . ' * ' . $i . ' = ' . $i * $sk . '</pre>';
+			}
+		?>
+		<p>2.5.Duota skaičių seka (ji sugeneruojama, užpildant ją atsitiktiniais skaičiais).
+			a) Rasti teigiamų ir neigiamų sekos narių sumas.<br>
+			b) Suskaičiuoti, kiek sekoje yra lyginių narių.<br>
+			c) Rasti mažiausią ir didžiausią sekos skaičių<br>
+		</p>
+		<?php
+			$kiekis = rand(1, 50);
+			$masyvas = array();
+			$lyginiai = 0;
+			$maziausias;
+			$didziausias;
+			for ($i = 0; $i < $kiekis; $i++) {
+				$masyvas[$i] = rand(-100, 100);
+			}
+			echo '<pre>';
+			print_r($masyvas);
+			echo '<br>Kiekis ' . $kiekis . '<br>';
+			for ($i = 0; $i < $kiekis; $i++) {
+				if ($masyvas[$i] % 2 == 0) $lyginiai++;
+				$maziausias = $masyvas[0];
+				$didziausias = $masyvas[0];
+				if ($masyvas[$i] < $maziausias) $maziausias = $masyvas[$i];
+				if ($masyvas[$i] > $didziausias) $didziausias = $masyvas[$i];
+			}
+			echo 'Maziausias sekos elementas ' . $maziausias . '<br>';
+			echo 'Didziausias sekos elementas ' . $didziausias;
+			echo '</pre>';
+		?>
+
+	</body>
+</html>

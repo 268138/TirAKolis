@@ -1,0 +1,76 @@
+<?php
+$users=array(
+    "Jonas"=>"abc123",
+    "Rasa" =>"xy*z",
+    "Kostas" =>"kostia*/*"
+);
+function forma(){
+    echo '
+            <form method="post" action="index.php">
+                <table style="width:300px;margin:auto;">
+                   <tr>
+                     <td>Vardas</td>
+                     <td><input type="text" name="V"></td>
+                  </tr>
+                  <tr>
+                     <td>Slaptažodis</td>
+                     <td><input type="password" name="S"></td>
+                  </tr>
+                  <tr>
+                     <td colspan="2"><input type="submit" value="Pirmyn"> 
+                     <input type="reset" value="Trinti"></td>
+                  </tr>
+                </table>
+          </form>   
+            ';
+    }
+?>
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Forma</title>
+</head>
+ 
+<body>
+<h1 style="text-align:center">Registracija</h1>
+<hr>
+ 
+<?php
+//cia rasysime programa
+        //if (isset($_POST["V"]) == false)
+            if (!isset($_POST["V"])) {
+                forma();
+            }
+            else {
+                $n = $_POST['V'];
+                $d = $_POST['S'];
+                if($n == '' || $d == '' || strlen($n) <= 3) {
+                    echo '<p style="text-align:center">Duomenu ivedimo klaida</p>';
+                    forma();
+                }
+                else {
+                    $ar = false;
+                    foreach($users as $UN => $UP) {
+                        if ($n == $UN && $d == $UP) {
+                            $ar = true;     
+                        }
+                        if ($ar) break;
+                    }
+                    if (!$ar) {
+                        echo '<p style="text-align:center">Nepavyko prisijungti, bandykite dar karta</p>';
+                        forma();
+                    }
+                    else {
+                        echo '<p>VALIO, PRISIJUNGETE, ' . $n . '</p>';
+                        echo '<button onclick="history.go(-1);">Back </button>';
+                    }
+                }
+                
+            }
+?>
+ 
+ 
+ 
+</body>
+</html>

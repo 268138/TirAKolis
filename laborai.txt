@@ -1,0 +1,678 @@
+--------2 PRATYBU ISSPRESTI UZDAVINIAI--------
+ 
+ 
+-----2.1-----
+ 
+ 
+<!DOCTYPE HTML>
+<html>
+ 
+<head>
+<title>Server Date</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>Server Date</h1>
+<?php
+ 
+/*
+Server date: DD.MM.YYYY, [day of the week]
+Tomorrow date: DD.MM.YYYY, [day of the week]
+*/
+ 
+$metai = date ('Y');  //Y - '2021', y - '21'
+$men = date ('m'); // m - '09', n - '9'
+$diena = date ('d');
+$savdiena = date ('l')
+echo 'Server date: ';
+echo $diena;
+echo '.';
+echo $men;
+echo ' ';
+echo $savdiena;
+echo ' ';
+echo $metai;
+ 
+//echo 'Server date: '.$diena. '.' .$men. '.'.$savdiena. '.' .$metai;
+//echo date ('Y-m-d H:i:s');// 2021-09-10 17:15:55
+//echo '<hr>';
+//echo 'Server date: '.date('d.m.Y, l');
+ 
+?>
+ 
+<hr>
+ 
+ 
+<?php
+ 
+//echo 'Nuo 2000 03 08 00:00:00 iki dabar praejo ' .time().' sekundziu<hr>';
+//echo 'Tomorrow date: '.date('d.m.Y, l',time()+24*60*60);
+ 
+ 
+?>
+ 
+ 
+ 
+ 
+ 
+ 
+-----2.2-----
+ 
+</body>
+</html>
+ 
+ 
+<!DOCTYPE HTML>
+<html>
+ 
+<head>
+<title>Server Date</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>Metu laikai</h1>
+<?php
+ 
+$men = date ('n');//'9'
+$men = 9;
+//1,2,12 ziema
+//3,4,5 pavasaris
+//6,7,8 vasara
+//9,10,11 ruduo
+ 
+ 
+if ($men == 3 or $men == 4 ir $men == 5){
+echo '<p style="color:green"> PAVASARIS</p>';
+echo '<p src="MetuLaikai/pavasaris.jpg" alt>';
+}
+ 
+else if ($men >=6 and $men <=8){
+echo '<p style="color:gold"> VASARA</p>';
+echo '<p src="MetuLaikai/vasara.jpg" alt>';
+}
+ 
+else if ($men >8 and $men <12){
+echo '<p style="color:brown"> RUDUO</p>';
+echo '<p src="MetuLaikai/ruduo.jpg" alt>';
+}
+ 
+else {
+echo '<p style="color:blue"> ZIEMA</p>';
+echo '<p src="MetuLaikai/ziema.jpg" alt>';
+}
+?>
+ 
+ 
+<hr>
+ 
+ 
+-----2.3-----
+ 
+<h1>Daugybos lentele</h1>
+ 
+ 
+<?php
+$x = 7;
+for ($i = 1 ; $i < 11 ; $i++){
+$rez = $x * $i;
+echo $x. ' &middot; ' .$i. ' = '.$rez;
+ 
+}
+?>
+ 
+ 
+ 
+</body>
+</html>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+--------3 PRATYBU ISSPRESTI UZDAVINIAI--------
+ 
+-----3.0-----
+ 
+<!DOCTYPE HTML>
+<html lang="lt">
+<head>
+<title>3.0</title>
+<meta charset="utf-8">
+</head>
+<body>
+     
+ 
+<h2>Atsitiktiniai skaiciai</h2>
+<?php
+//RANDOM
+// PHP vienas is variantu funkcija rand()
+$x = rand (1,6);//bet koks nuo 1 iki 6
+$y = rand (1,6);
+ 
+echo '<p> Pirmas kauliukas: ' .$x. '</p>';
+echo '<p> Antras kauliukas: ' .$y. '</p>';
+?>
+ 
+ 
+<h2>Masyvai</h2>
+ 
+ 
+<?php
+ 
+//kurimas array
+$matP = array (6,2,2,10);
+ 
+//elementai
+ 
+echo '<p> Pirmas: '.$matP[0]. '</p>';
+echo '<p> Antras: '.$matP[1]. '</p>';
+ 
+//kiek masyve elementu?
+ 
+$kiek = count($matP);//6
+ 
+//momentinis atvaizdavimas (programuotojas nori ivertinti masyvo bukle)
+echo '<pre>';
+print_r($matP);
+echo '</pre>';
+//atvaizdavimas naudotojui
+echo '<p>';
+for ($i = 0; $i < $kiek ; $i++){
+echo $matP[$i].'; ';
+}
+ 
+echo '</p>';
+ 
+?>
+ 
+</body>
+</html>
+ 
+ 
+ 
+ 
+ 
+-----3.1-----
+ 
+ 
+<!DOCTYPE HTML>
+<html lang="lt">
+<head>
+<title>3.1</title>
+<meta charset="utf-8">
+</head>
+<body>
+     
+<h1>Skaičių sekos analizė</h1>
+<h2>Sugeneruota skaičių seka:</h2>
+<?php
+$kiek = rand(5,20);
+$sk = array();//sukuriame tuscia masyva
+for ($i = 0; $i < $kiek; $i++){
+$sk[$i] = rand (-50,50);
+}
+//------------
+echo '<p> Sekos nariai: <br>';
+for ($i = 0; $i < $kiek; $i++){
+echo $sk[$i].'; ';
+}
+echo '<br> Is viso:'.$kiek.'</p>';
+?>
+<h2>Teigiamų sekos narių suma</h2>
+<?php
+$Tsuma = 0;
+for ($i = 0; $i < $kiek; $i++){
+if ($sk[$i] > 0) {
+$Tsuma += $sk[$i];
+}
+}
+echo '<p> Teigiamu sekos nariu suma: '.$Tsuma.' </p>';
+?>
+<h2>Neigiamų sekos narių suma</h2>
+<?php
+ 
+$Nsuma = 0;
+for ($i = 0; $i < $kiek; $i++){
+if ($sk[$i] < 0) {
+$Nsuma += $sk[$i];
+}
+}
+echo '<p> Neigiamu sekos nariu suma: '.$Nsuma.' </p>';
+?>
+<h2>Lyginių sekos narių kiekis</h2>
+<?php
+// 13 % 8 = 5
+$kiekLyg= 0;
+for ($i = 0; $i < $kiek; $i++){
+if($sk[$i] % 2 == 0) {
+$kiekLyg++;
+}//if ($sk[$i] % 2 != 1)
+}
+ echo '<p> Lyginių sekos narių kiekis: '.$kiekLyg.' </p>';
+ 
+?>
+<h2>Max/Min</h2>
+<?php
+$did = $sk[0];
+$maz = $sk[0];
+for ($i = 1; $i < $kiek; $i++){
+if($sk[$i] > $did) {
+$did = $sk[$i];}
+if($sk[$i] < $maz) {
+$maz = $sk[$i];}
+}
+ echo '<p> MAX: '.$did.' </p>';
+  echo '<p> MIN: '.$maz.' </p>';
+?>
+<h2>Ar pirminis</h2>
+<?php
+//13 pirminis
+//15 sudetinis
+// 13 - nuo 1 iki 13 13/1t , 13/2 , 13/3 , .... 13/13 t
+// 15 - 15/1 , 15/3 , 15/5, 15/15
+// 13 - nuo 2 iki 12
+//Algebros teorema N - nuo 2 iki saknis is N
+//13 - 2 iki 4
+$x = 45;
+$saknis_is_x = round (sqrt($x));//7
+$ArPirminis = true;
+for ($i = 2; $i <= $saknis_is_x; $i++){
+if ($x % $i == 0){
+$ArPirminis = false;}
+if ($ArPirminis == false){break;}
+//if (!$ArPirminis)
+ if ($ArPirminis == true) { echo $x.' - pirminis';}
+else {echo $x.' - NE pirminis';}
+}
+?>
+ 
+</body>
+</html>
+ 
+ 
+-----3.2-----
+ 
+<!DOCTYPE HTML>
+<html lang="lt">
+<head>
+<title>Tuscias puslapis</title>
+<meta charset="utf-8">
+</head>
+<body>
+ 
+ <?php
+ 
+ // $_GET['A']
+ // $_GET['B']
+ $a = $_GET['A'];
+ $b = $_GET['B'];
+ 
+ $c = sqrt($a*$a* + $b*$b);
+ echo 'kai a=' .$a. ' ir b='.$b.', tai c='.$c;
+ 
+ ?>
+ 
+</body>
+</html>
+ 
+ 
+----KITAS LANGAS----
+<!DOCTYPE HTML>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<div class="info">
+<h1>Staciojo trikampio izambines, perimetro ir ploto skaiciuokle</h1>
+ 
+<form action="rez.php" method="get">
+ 
+<table>
+<tr>
+<td>
+<p> a = <input type = "number" name="A">
+<br> 
+b = <input type = "number" name = "B"> </p>
+<p><input type = "submit" value = "Rasti c"> </p>
+ 
+</td>
+<td>
+<img src="240px-Rtriangle.png" alt="">
+ 
+            </td>
+        </tr>
+    </table>
+</form>
+</div>
+ 
+</body>
+</html>
+ 
+ 
+ 
+ 
+ 
+--------4 PRATYBU ISSPRESTI UZDAVINIAI--------
+ 
+ 
+ 
+ 
+-----4.1-----
+ 
+<!DOCTYPE HTML>
+<html lang="lt">
+<head>
+<title>4.1</title>
+<meta charset="utf-8">
+</head>
+<body>
+<?php
+$dvi_mas = array();
+$n = rand(2,5);//eil
+$m = rand(2,5);//stul
+for($i = 0; $i < $n; $i++){
+for($j = 0; $j < $m; $j++){
+$dvi_mat[$i][$j] = rand(-100,100);
+}
+}
+echo '<pre>';
+print_r($dvi_mat);
+echo '</pre>';
+for($i = 0; $i < $n; $i++){
+$at = rand(0, $m - 1);
+$in = $i+1;
+echo '<h2>'.$in.'-os eilutes parinktas elementas: '.$dvi_mat[$i][$at].'</h2>';
+}
+//-------------------------------
+$m1 = array();//maz
+$m2 = array();//did
+for($i = 0; $i < $n; $i++){
+$did = $dvi_mat[$i][0];
+$maz = $dvi_mat[$i][0];
+for($j = 0; $j < $m; $j++){
+if($dvi_mat[$i][$j] > $did){ $did = $dvi_mat[$i][$j];}
+if($dvi_mat[$i][$j] < $maz){ $maz = $dvi_mat[$i][$j];}
+}
+$m1[$i] = $did;
+$m2[$i] = $maz;
+}
+echo '<pre>Didziausi:';
+print_r($m1);
+echo 'Maziausi:';
+print_r($m2);
+echo '</pre>'
+?>
+</body>
+</html>
+ 
+ 
+ 
+ 
+ 
+-----4.2-----
+ 
+<!DOCTYPE HTML>
+<html lang="lt">
+<head>
+<title>KMI</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>KMI skaiciuokle</h1>
+<form method='get' action="KMI.php">
+<pre>
+Jusu ugis<input type = "number" min="80" max="250" name="u"> cm
+Jusu svoris<input type = "number" min="20" max="300" name="s"> kg
+<input type="submit" value="skaiciuoti KMI">
+</pre>
+</form>
+</body>
+</html>
+ 
+ 
+<!DOCTYPE HTML>
+<html lang="lt">
+<head>
+<title>KMI - REZULTATAS</title>
+<meta charset="utf-8">
+</head>
+<body>
+<?php
+$U = $_GET['u'];
+$S = $_GET['s'];
+$kmi = $S/($U/100*$U/100);
+echo '<p>Jusu ugis: '.$U.' cm</p>';
+echo '<p>Jusu svoris: '.$S.' kg</p>';
+echo '<p>Jusu KMI: '.round($kmi).'</p>';
+if($kmi < 18.5)
+echo '<p>Per mazas svoris</p>';
+elseif($kmi >= 18.5 && $kmi < 25)
+echo '<p>Normalus svoris</p>';
+elseif($kmi >= 25 && $kmi < 30)
+echo '<p>Virssvoris</p>';
+?>
+</body>
+</html>
+ 
+ 
+-----4.3-----
+ 
+<!DOCTYPE HTML>
+<html lang="lt">
+<head>
+<title>Tuščias puslapis</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>Valiutos skaiciuokle</h1>
+<hr>
+<form method="post" action="index.php">
+<input type="number" min="1" max="5000" name="eur">Eur
+<select name="valiuta">
+<option value='1.2'>Doleriai</option>
+<option value='5.6'>Zlotai</option>
+<option value='0.8'>Svarai</option>
+</select>
+<input type="submit" value="Konvertuoti">
+</form>
+<hr>
+<?php
+if(isset($_POST['eur']) and isset($_POST['valiuta'])){
+$e = $_POST['eur'];
+$v = $_POST['valiuta'];
+echo $e * $v.' '.$v.'<br>';
+}
+?>
+</body>
+</html>
+ 
+ 
+ 
+ 
+--------5 PRATYBU ISSPRESTI UZDAVINIAI--------
+ 
+ 
+ 
+ 
+-----5.-----
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vartotojiška funkcija</title>
+</head>
+<body>
+    <?php
+        //funkcija spausdina rezultatą
+function siandien() {
+    //...
+    echo date('Y-m-d H:i:s');
+}
+        // funkcija grąžina rezultatą
+function savDiena(){
+    //...
+    return date ('w');//5, sekm 0
+}
+ 
+        //funkcijų testavimas
+        siandien();
+        $sd = savDiena();
+        echo '<br>'.$sd;
+    ?>
+</body>
+</html>
+ 
+-----5.1------
+<?php
+function ArTobulas($x){//6 1+2+3
+    $sum = 0;
+    for ($i = 1; $i < $x ; $i++){
+        if ($x % $i == 0){$sum+=$i;}
+        //if ($x % $i == 0 && $x = 496){echo $i.' + ';}
+    }
+    //echo $sum;
+    if ($sum ==$x){return true;}
+    else {return false;}
+}
+ 
+//echo ArTobulas(6);// 10 dalinasi is 1,2,3
+?>
+ 
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tobuli Skaičiai</title>
+</head>
+<body>
+    <h1>Tobulieji triženkliai skaičiai</h1>
+    <hr>
+    <?php
+    for ($a = 1; $a <= 999; $a++){
+        if (ArTobulas($a) == true){     echo ' = ' .$a. '; ';}
+    }
+ 
+    ?>
+</body>
+</html>
+ 
+-----5.2------
+ 
+<!DOCTYPE HTML>
+<html lang="lt">
+    <head>
+        <title>SKAIČIUOTUVAS</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <!-- čia testuosime funkcijų veikimą -->
+    <?php
+ 
+    ?>
+      <h1>SKAIČIUOTUVAS</h2>
+      <hr>
+      <!-- čia bus forma -->
+      <form action="index.php" method="post">
+        <input type ="text" size="4" name="A">
+        <input type="submit" value=" + " name="plius">
+        <input type="submit" value=" / " name="dalyba">
+        <input type ="text" size="4" name="B">
+      </form>
+      <hr>
+      <!-- čia - rezultatas -->
+    <?php
+        if(isset($_POST['plius'])){
+            $x = $_POST['A']; $y = $_POST['B'];
+            //if(empty($x) || empty($y)){
+            if($x == '' || $y == '' || !is_numeric($x) || !is_numeric($y)){
+                echo '<p>Duomenu ivedimo klaida</p>';
+            }
+            else{
+                echo '<p>'.$x.' + '.$y.' = '.skaiciuok($x,$y,'+').'</p>';
+            }
+        }
+        elseif(isset($_POST['dalyba'])){
+            $x = $_POST['A']; $y = $_POST['B'];
+            if($x == '' || $y == '' || !is_numeric($x) || !is_numeric($y)){
+                echo '<p>Duomenu ivedimo klaida</p>';
+            }
+            else{
+                echo '<p>'.$x.' / '.$y.' = '.skaiciuok($x,$y,'/').'</p>';
+            }
+        }
+        //elseif(isset($_POST['...'])){}
+    ?>
+ 
+    </body>
+</html>
+<?php
+//čia rašysime funkcijas
+function suma($a,$b){
+    return $a + $b;
+}
+function dalyba($a,$b){
+    if ($b != 0) {return $a / $b;}
+    else {return "Klaida!";}
+}
+//---------
+function skaiciuok($a,$b,$v){// '+' '/'
+    if($v == "+"){return suma($a,$b);}
+    elseif($v == "/"){return dalyba($a,$b);}
+    //elseif($v == "..."){return ...($a,$b);}
+}
+?>
+ 
+ 
+ 
+-----5.3-----
+ 
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klasės X pažangumas</title>
+</head>
+<body>
+    <h1>Klasė X</h1>
+    <hr>
+<?php
+ 
+$Klase6B = array(
+    'Jonaitis' => array (
+    'Matematika' => array(10,10,10,10),
+    'Fizika' => array(5,4),
+    'Lietuiu' => array(10,10,5,10,4,5,10)
+ 
+ 
+    ),
+    'Onaityte' => array (
+    'Matematika' => array(8,9,4),
+    'Fizika' => array(10,2,4,5),
+    'Lietuiu' => array(10,9,8,4,3,5)
+    ),
+    'Petraitis' => array (),
+    'Rimkute' => array ()
+);
+echo '<pre>';
+print_r($Klase6B);
+echo '</pre>';
+echo '<p>Onaitytes 3-ias Fizikos pazymys '.$Klase6B ['Onaityte']['Fizika'][2].'</p>';
+ 
+?>
+    <hr>
+<p style="text-align:center">   
+    <?php echo 'Sudervė '.date('Y').'&copy;'; ?>
+    </p>
+</body>
+</html>

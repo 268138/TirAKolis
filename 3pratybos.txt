@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>3 pratybos</title>
+		<meta charset="utf-8">
+	</head>
+
+	<body>
+		<h1>3 pratybos</h1>
+		<?php
+			echo '<pre>3.1.Duota skaičių seka (ji sugeneruojama, užpildant ją atsitiktiniais skaičiais).
+a) Rasti teigiamų ir neigiamų sekos narių sumas.
+b) Suskaičiuoti, kiek sekoje yra lyginių narių.
+c) Rasti mažiausią ir didžiausią sekos skaičių.
+d) Suformuokite masyvą į kurį surašykite pirminius sekos narius.</pre>';
+			$kiekis = rand(1, 30);
+			$seka = array();
+			for ($i = 0; $i < $kiekis; $i++) {
+				$seka[$i] = rand(0, 100);
+			}
+			echo '<pre>';
+			print_r($seka);
+			echo '</pre>';
+			$teigiamuSuma = 0;
+			$neigiamuSuma = 0;
+			$lyginiai = 0;
+			$maz;
+			$didz;
+			for ($i = 0; $i < $kiekis; $i++) {
+				$maz = $seka[0];
+				$didz = $seka[0];
+				if ($seka[$i] > 0) $teigiamuSuma += $seka[$i];
+				else if ($seka[$i] < 0) $neigiamuSuma += $seka[$i];
+
+				if ($seka[$i] % 2 == 0) $lyginiai++;
+				if ($seka[$i] < $maz) $maz = $seka[$i];
+				if ($seka[$i] > $didz) $didz = $seka[$i];
+			}
+		    echo '<pre>Teigiamu skaiciu suma ' . $teigiamuSuma;
+		    echo '<br>Neigiamu skaiciu suma ' . $neigiamuSuma;
+		    echo '<br>Lyginiu nariu yra: ' . $lyginiai;
+		    echo '<br>Maziausias narys: ' . $maz;
+		    echo '<br>Didziausias naryrs: ' . $didz . '</pre>';
+
+		    $pirminiai = array();
+		    for ($i = 0; $i < $kiekis; $i++) {
+		    	$dalikliai = 0;
+		    	for ($j = 1; $j <= $seka[$i]; $j++) {
+		    		if ($seka[$i] % $j == 0) $dalikliai++;
+		    	}
+		    	if ($dalikliai == 2) {
+		    		$pirminiai[$i] = $seka[$i];
+		    	}
+		    }
+		    echo '<pre>Pirminiu skaiciu masyvas<br>';
+		    print_r ($pirminiai);
+		    echo '3.2. Realizuokite stačiojo trikampio įžambinės, perimetro ir ploto skaičiuoklę.<br>';
+		    echo '<center><img src=https://i.imgur.com/dNCwTe2.png><br></center>';
+		?>
+		<form method="post" action="index.php">
+<center>
+<pre>
+a = <input type="number" name="a" value='0'>
+b = <input type="number" name="b" value="0">
+<input type="submit" value="skaiciuoti">
+</pre>
+</center>
+</form>
+
+		<?php
+			if (isset($_POST['a']) && isset($_POST['b'])) {
+				$izambine = sqrt(($_POST['a'] * $_POST['a']) + ($_POST['b'] * $_POST['b']));
+				echo '<center>Izambine yra lygi: ' . $izambine . '<br>';
+				echo 'Perimetras lygus: ' . (($_POST['a'] + $_POST['b']) + ($izambine)) . '<br>';
+				echo 'Plotas lygus: ' . ($_POST['a'] * $_POST['b'] / 2) . '<br></center>';
+			}
+			else echo 'Iveskite reiksmes';
+		?>
+
+		<p>3.3. Sugeneruokite sveikųjų skaičių dvimatį masyvą iš NxM elementų.
+1) Suraskite ir išveskite masyvo kiekvienos eilutės didžiausią, mažiausią elementus:
+išveskite juos ir jų indeksus.
+2) Iš dvimačio masyvo suformuokite 2 naujus vienmečius masyvus – viename surašant
+mažiausius, o kitame didžiausius eilučių elementus.
+3) Suraskite ir išveskite dvimačio masyvo kiekvieno stulpelio elementų vidurkį.
+Masyvo matą (t.y. yra N ir M reikšmes), sveikųjų skaičių intervalo (iš kurio bus
+generuojamos masyvo elementų reikšmės) nurodo naudotojas.</p></pre>
+	<?php
+		echo 'IS SIU SKAICIU BUS SUKURTAS MASYVAS NxM<br>';
+
+		echo '<form method="post" action="index.php">';
+		echo 'Iveskite N(eiluciu skaicius)<br>';
+		echo '<input type="number" name="N"><br>';
+		echo 'Iveskite M(stulpeliu skaicius)<br>';
+		echo '<input type="number" name="M"><br>';
+		echo '<input type="submit" value="sukurti">';
+		echo '</form>';
+
+		if (isset($_POST['N']) && isset($_POST['M'])) {
+			$m = array();
+			for ($i = 0; $i < $_POST['N']; $i++) {
+				for ($j = 0; $j < $_POST['M']; $j++) {
+					$m[$i][$j] = rand(0, 100);
+				}
+			}
+		}
+		else echo 'iveskite reiksmes';
+		echo '<pre>';
+		print_r($m);
+		echo '</pre>';
+
+
+		$maziausi = array();
+		$didziausi = array();
+		for ($i = 0; $i < $_POST['N']; $i++) {
+			$sum = 0;
+			$indeksasM = 0;
+			$maziausias = $m[$i][0];
+			$didziausias = $m[$i][0];
+			for ($j = 0; $j < $_POST['M']; $j++) {
+				$sum = $sum + $m[$i][$j];
+				if ($m[$i][$j] <= $maziausias) {
+					$maziausias = $m[$i][$j];
+					$indeksasM = $j;
+					$maziausi[$i] = $maziausias;
+				}
+				if ($m[$i][$j] >= $didziausias) {
+					$didziausias = $m[$i][$j];
+					$indeksasD = $j;
+					$didziausi[$i] = $didziausias;
+				}
+				$vidurkiai[$i] = $sum / count($m);
+			}
+			echo $i . ' masyvo maziausias elementas: ' . $maziausias . ', jo indeksas ' . $indeksasM . '<br>';
+			echo $i . ' masyvo didziausias elementas: ' . $didziausias . ', jo indeksas ' . $indeksasD . '<br>';
+		}
+			echo '<hr>';
+			echo 'visu eiluciu maziausi nariai: <br>';
+			echo '<pre>';
+			print_r($maziausi);
+			echo '</pre>';
+			echo '<hr>';
+			echo 'visu eiluciu didziausi nariai: <br>';
+			echo '<pre>';
+			print_r($didziausi);
+			echo '</pre>';
+			echo '<hr>';
+			echo '<hr>';
+			echo 'visu eiluciu vidurkiai: <br>';
+			echo '<pre>';
+			print_r($vidurkiai);
+			echo '</pre>';
+			echo '<hr>';
+	?>
+
+	</body>
+</html>
